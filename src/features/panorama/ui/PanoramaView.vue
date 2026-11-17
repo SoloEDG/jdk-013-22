@@ -4,6 +4,7 @@ import type { CameraController } from "../model/camera";
 import { createRenderer } from "../lib/renderer";
 import Compass from "./Compass.vue";
 const props = defineProps<{ controller: CameraController; source: string }>();
+const emit = defineEmits<{ interact: [] }>();
 const host = ref<HTMLElement>();
 const error = ref(false);
 let render: ReturnType<typeof createRenderer> | undefined;
@@ -13,6 +14,8 @@ function down(e: PointerEvent) {
   if ((e.target as HTMLElement).closest("button")) return;
   drag = { x: e.clientX, y: e.clientY };
   host.value?.setPointerCapture(e.pointerId);
+  // 用户主动接管视角：任何进行中的推荐转向动画立即让位。
+  emit("interact");
 }
 function move(e: PointerEvent) {
   if (!drag) return;

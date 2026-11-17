@@ -17,6 +17,7 @@ import { ChapterList, MediaPlayer, Transport } from "../features/chapters";
 import { HotspotLayer, HotspotDetail } from "../features/hotspots";
 import { InterviewPanel, PeopleList } from "../features/interviews";
 import { JournalPanel } from "../features/journal";
+import { GuideCard } from "../features/guide";
 import { createWorkspace } from "./workspace";
 const w = createWorkspace(),
   about = ref(false),
@@ -73,6 +74,7 @@ async function fullscreen() {
             <PanoramaView
               :controller="w.camera"
               :source="w.playback.chapter.value.panorama"
+              @interact="w.guide.cancelFocus()"
               ><MediaPlayer
                 :playback="w.playback"
                 :branch="!!w.branch.personId.value"
@@ -105,7 +107,11 @@ async function fullscreen() {
               <div class="drag-hint">
                 <MousePointer2 :size="14" /> 按住拖动，环顾四周
               </div></PanoramaView
-            ><HotspotDetail
+            >
+            <GuideCard
+              v-if="!w.branch.personId.value && !w.discovery.detail.value"
+              :guide="w.guide"
+            /><HotspotDetail
               v-if="w.discovery.detail.value && !w.branch.personId.value"
               :hotspot="w.discovery.detail.value"
               :saved="w.journal.has(w.discovery.detail.value.id)"

@@ -54,3 +54,12 @@ export type Command =
   | { type: "hotspot"; id: string }
   | { type: "return" }
   | { type: "revisit"; entry: Entry };
+export type ClueStatus = "reachable" | "upcoming" | "review";
+export interface Clue {
+  hotspot: Hotspot;
+  status: ClueStatus;
+  read: boolean;
+  bookmarked: boolean;
+  reason: string;
+  eta: number | null;
+}

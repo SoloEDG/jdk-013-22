@@ -1,4 +1,7 @@
 import type { Chapter, Hotspot, Person } from "./types";
+// 内容版本：热点时间窗或讲述内容调整时递增。阅读进度按版本隔离，
+// 版本更新后旧的“已读”结论失效，线索不会被永久排除在推荐之外。
+export const CONTENT_VERSION = "1";
 export const chapters: Chapter[] = [
   {
     id: "dawn",

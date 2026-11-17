@@ -1188,3 +1188,335 @@ blockquote {
 
 .panorama>canvas{z-index:0}.panorama>.film-texture{z-index:1}.stage-shade{z-index:2}.hotspot-layer{z-index:4}.stage-top,.scene-caption,.drag-hint,.compass{z-index:3}
 .voices{min-width:0}
+
+/* 探索线索推荐：浮在舞台上方，不遮挡底部进度条 */
+.guide-card {
+  position: absolute;
+  z-index: 7;
+  top: 64px;
+  right: 22px;
+  width: 288px;
+  max-height: calc(100% - 150px);
+  overflow: auto;
+  background: #162727f2;
+  border: 1px solid #91bba654;
+  border-radius: 4px;
+  padding: 16px 16px 14px;
+  box-shadow: 0 10px 50px #0006;
+  backdrop-filter: blur(10px);
+}
+.guide-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.guide-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #d2e3d4;
+}
+.guide-head-actions {
+  display: flex;
+  gap: 10px;
+}
+.guide-mini {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  color: #8fae9a;
+  padding: 2px 0;
+  white-space: nowrap;
+}
+.guide-current {
+  border-top: 1px solid var(--border);
+  padding-top: 13px;
+}
+.clue-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.clue-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9px;
+  letter-spacing: 1px;
+  padding: 4px 8px;
+  border-radius: 20px;
+  border: 1px solid;
+}
+.clue-status.is-reachable {
+  color: #c6e7cf;
+  border-color: #8fc7a180;
+  background: #3f6b5033;
+}
+.clue-status.is-upcoming {
+  color: #e7d9b0;
+  border-color: #d3bd8370;
+  background: #6b5d3f2e;
+}
+.clue-status.is-review {
+  color: #d7bfd6;
+  border-color: #b08fb270;
+  background: #5d3f632e;
+}
+.clue-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  color: #8fa797;
+  border: 1px solid #ffffff1c;
+  padding: 3px 7px;
+  border-radius: 20px;
+}
+.guide-current h3 {
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.clue-meta {
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #7d9587;
+  margin-bottom: 10px;
+}
+.clue-reason {
+  font-size: 11px;
+  color: #b3c6b7;
+  margin-bottom: 8px;
+}
+.clue-hint {
+  font-size: 10px;
+  color: #7f9688;
+  border-left: 2px solid #4d6a58;
+  padding-left: 9px;
+  margin-bottom: 13px;
+}
+.guide-cta {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+}
+.guide-cta.is-reachable {
+  background: #b7d2bc;
+  color: #18372b;
+  border-color: #b7d2bc;
+}
+.guide-cta.is-upcoming {
+  background: transparent;
+  color: #e0d2a6;
+  border-color: #c3b17c66;
+}
+.guide-cta.is-review {
+  background: transparent;
+  color: #d3b8d2;
+  border-color: #b08fb266;
+}
+.guide-muted {
+  font-size: 10px;
+  color: #7f9387;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+.guide-error {
+  font-size: 10px;
+  color: #eccda0;
+  background: #3a2f2066;
+  border: 1px solid #c49a6344;
+  border-radius: 3px;
+  padding: 8px 9px;
+  margin-bottom: 10px;
+}
+.guide-waiting {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 9px 10px;
+  border-radius: 3px;
+  background: #3a352266;
+  border: 1px solid #c3b17c55;
+  font-size: 10px;
+  color: #e2d6b0;
+}
+.guide-waiting em {
+  font-style: normal;
+  color: #c2b483;
+}
+.guide-waiting .guide-mini {
+  margin-left: auto;
+  color: #cdbd8e;
+}
+.guide-list {
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.guide-group > small {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  color: #7d9587;
+  margin-bottom: 7px;
+}
+.guide-unvisited {
+  font-style: normal;
+  color: #d9c78f;
+  border: 1px solid #c3b17c55;
+  border-radius: 10px;
+  padding: 1px 6px;
+  margin-left: 6px;
+  letter-spacing: 0.5px;
+}
+.clue-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  padding: 9px 8px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  margin-bottom: 6px;
+}
+.clue-row-icon {
+  flex-shrink: 0;
+  color: #9cbca8;
+}
+.clue-row.is-reachable .clue-row-icon {
+  color: #a8d4b5;
+}
+.clue-row.is-upcoming .clue-row-icon {
+  color: #d9c78f;
+}
+.clue-row.is-review .clue-row-icon {
+  color: #c6a7c5;
+}
+.clue-row-text {
+  min-width: 0;
+  flex: 1;
+}
+.clue-row-text b {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.clue-row-text b i {
+  font-style: normal;
+  font-size: 8px;
+  color: #8fa797;
+  border: 1px solid #ffffff1c;
+  border-radius: 10px;
+  padding: 1px 5px;
+  margin-left: 5px;
+}
+.clue-row-text small {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 0.5px;
+  color: #789084;
+  margin-top: 4px;
+}
+.clue-row-action {
+  flex-shrink: 0;
+  font-size: 9px;
+  color: #93b39f;
+  white-space: nowrap;
+}
+.guide-confirm-backdrop {
+  position: absolute;
+  z-index: 12;
+  inset: 0;
+  background: #071310cc;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+.guide-confirm {
+  position: relative;
+  width: 100%;
+  background: #1a2c2a;
+  border: 1px solid #a0b9a744;
+  border-radius: 4px;
+  padding: 24px 20px 20px;
+}
+.guide-confirm-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 3px;
+}
+.guide-confirm > small {
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: #c6a7c5;
+}
+.guide-confirm h4 {
+  font-family: "Noto Serif SC", serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 10px 0;
+}
+.guide-confirm p {
+  font-size: 11px;
+  color: #a8bcaa;
+  margin-bottom: 16px;
+}
+.guide-confirm-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.guide-notice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 9px 10px;
+  border-radius: 3px;
+  background: #1d352880;
+  border: 1px solid #8fc7a14d;
+  font-size: 10px;
+  color: #cde2d2;
+}
+.guide-notice span {
+  flex: 1;
+}
+.guide-notice button {
+  padding: 2px;
+  color: #8fae9a;
+}
+@media (max-width: 760px) {
+  .guide-card {
+    width: 240px;
+    right: 12px;
+    top: 56px;
+    max-height: calc(100% - 120px);
+  }
+  .guide-head-actions .guide-mini {
+    font-size: 8px;
+  }
+}
